@@ -1,6 +1,20 @@
 {
   "name": "md-links",
   "version": "0.1.0",
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "markdown",
+    "jest",
+    "https"
+  ],
+  "dependencies": {
+    "jest": "^29.5.0",
+    "node-fetch": "^3.3.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
   "engines": {
     "node": ">=16.x"
   },
@@ -8,5 +22,12 @@
     "createdAt": "2023-02-07T18:15:01.196Z",
     "version": "5.5.0",
     "commit": "a63a770ea33332882790401851df337734b0b734"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1"
   }
 }
