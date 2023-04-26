@@ -1,5 +1,0 @@
-
-// const {checkPath,
-// readFile,
-// validate,
-// }

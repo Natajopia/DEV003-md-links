@@ -50,23 +50,27 @@ const getLinks = (content, route) => {
   // saca solo lo que este entre parentesis
   const url = /\(([^)]+)\)/
   const brackets = /\[(.*?)\]/
-  dataLinks = Array.from(content.match(remove), (links) =>
+  // console.log(content.match(remove))
+  // Deberia poner condicional que devuelva algo en content.match es null
+  dataLinks = Array.from(content.match(remove) || [], (links) => {
+    return {
     // console.log('este es el array', links)
-    ({
-      // extraer links y URL
+    // extraer links y URL
       href: links.match(url)[1],
       text: links.match(brackets)[1].substring(0, 51),
       file: route
-    }))
-  //  console.log(dataLinks)
+    }
+  })
+
+  // console.log(dataLinks)
   return dataLinks // es un array de objetos
 }
 // readFiles('filetest\\testfile.md').then((result) => {
-// getLinks(result, 'filetest\\testfile.md')
-// });
+//   getLinks(result, 'filetest\\testfile.md')
+// })
 
 // -----------------validar links (peticiones HTTP)--------------
-const validate = (dataLinks) => {
+const validateLinks = (dataLinks) => {
   const promiseArray = dataLinks.map((link) =>
     // console.log(link.href)
     fetch(link.href)
@@ -95,11 +99,11 @@ const validate = (dataLinks) => {
   return Promise.all(promiseArray)
 }
 
-readFiles('filetest\\testfile.md').then((result) => {
-  validate(getLinks(result, 'filetest\\testfile.md'))
-    .then(console.log)
-    .catch(console.log)
-})
+// readFiles('filetest\\testfile.md').then((result) => {
+//   validateLinks(getLinks(result, 'filetest\\testfile.md'))
+//     .then(console.log)
+//     .catch(console.log)
+// })
 // filetest\\testfile.md
 
 module.exports = {
@@ -109,6 +113,5 @@ module.exports = {
   confirmFileMd,
   readFiles,
   getLinks,
-  validate
-
+  validateLinks
 }
